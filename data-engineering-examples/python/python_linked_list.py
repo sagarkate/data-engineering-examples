@@ -27,6 +27,10 @@ class Node:
 class LinkedList:
     def __init__(self, head=None) -> None:
         self.head = head
+        if self.head is None:
+            self.size = 0
+        else:
+            self.size = 1
     
     def append(self, value):
         '''
@@ -41,6 +45,7 @@ class LinkedList:
             while current_node.next is not None:
                 current_node = current_node.next
             current_node.next = Node(value)
+        self.size += 1
 
     def pop(self):
         '''
@@ -56,6 +61,7 @@ class LinkedList:
         elif self.head.next is None:
             popped_value = self.head.value
             self.head = None
+            self.size -= 1
             return popped_value
         else:
             current_node = self.head
@@ -63,6 +69,7 @@ class LinkedList:
                 current_node = current_node.next
             popped_value = current_node.next.value
             current_node.next = None
+            self.size -= 1
             return popped_value
 
     def peek(self):
@@ -90,12 +97,14 @@ class LinkedList:
             return None
         elif self.head.next is None:
             self.head = None
+            self.size -= 1
             return None
         else:
             current_node = self.head
             while current_node.next.next is not None:
                 current_node = current_node.next
             current_node.next = None
+            self.size -= 1
             return None
 
     def insert_at_start(self, value):
@@ -111,6 +120,7 @@ class LinkedList:
             current_node = Node(value)
             current_node.next = self.head
             self.head = current_node
+        self.size += 1
 
     def remove_from_start(self):
         '''
@@ -122,6 +132,7 @@ class LinkedList:
             return None
         else:
             self.head = self.head.next
+        self.size -= 1
         
     def __str__(self) -> str:
         '''
@@ -138,6 +149,9 @@ class LinkedList:
                 current_node = current_node.next
             linked_list.append(f"{current_node.value}")
             return "[" + " -> ".join(linked_list) + "]"
+        
+    def __len__(self):
+        return self.size
 
 def main():
     my_linked_list = LinkedList()
@@ -158,6 +172,8 @@ def main():
     print(f"\nmy_linked_list after using insert_at_first(1020): {my_linked_list}")
     my_linked_list.remove_from_start()
     print(f"\nmy_linked_list after using remove_from_start(): {my_linked_list}")
+
+    print(f"Length of my_linked_list: {len(my_linked_list)}")
 
 if __name__ == "__main__":
     main()
