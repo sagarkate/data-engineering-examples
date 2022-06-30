@@ -137,7 +137,7 @@ class LinkedList:
                 linked_list.append(f"{current_node.value}")
                 current_node = current_node.next
             linked_list.append(f"{current_node.value}")
-            return " -> ".join(linked_list)
+            return "[" + " -> ".join(linked_list) + "]"
 
 def main():
     my_linked_list = LinkedList()

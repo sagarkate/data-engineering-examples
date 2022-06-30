@@ -1,2 +1,4 @@
 .metals
 .vscode
+.pytest*
+__pycache__
