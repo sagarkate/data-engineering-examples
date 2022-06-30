@@ -1,3 +1,24 @@
+'''
+This Program has 2 classes: Node and LinkedList
+    Node:
+        -   This is the node of a linked list.
+        -   It holds value of the current node and,
+            reference to the next node in the list.
+    
+    LinkedList:
+        -   This is the implementation of Linked List.
+        -   We can create the empty linked list or,
+            we could pass in the head node while creating
+            a new linked list.
+        -   We have below methods available:
+                - append(value)
+                - pop()
+                - peek()
+                - remove()
+                - insert_at_start(value)
+                - remove_from_start()
+'''
+
 class Node:
     def __init__(self, value) -> None:
         self.value = value
@@ -8,6 +29,11 @@ class LinkedList:
         self.head = head
     
     def append(self, value):
+        '''
+        -   Add a new node to the linked list.
+        -   If the linked list is empty, create a new node and make it head of the linked list.
+        -   If the linked list is not empty, traverse to the end of the linked list and add a new node at the end.
+        '''
         if self.head is None:
             self.head = Node(value)
         else:
@@ -18,7 +44,12 @@ class LinkedList:
 
     def pop(self):
         '''
-        return the last node value of the linked list by removing that node
+        -   Return the value of last node of the linked list by removing that node.
+        -   If the linked list is empty, return None.
+        -   If the linked list has only head node, remove that node, mark the linked list as empty and, 
+            return the value of the head node.
+        -   If the linked list has more nodes apart from the head, traverse to the penultimate node 
+            of the linked list. Remove its next node (i.e. the last node) and return the value of the last node.
         '''
         if self.head is None:
             return None
@@ -36,7 +67,8 @@ class LinkedList:
 
     def peek(self):
         '''
-        return the last node value of the linked list without removing that node
+        -   Return the value of the last node of the linked list without removing that node.
+        -   If the linked list is empty, return None.
         '''
         if self.head is None:
             return None
@@ -48,7 +80,11 @@ class LinkedList:
 
     def remove(self):
         '''
-        remove the last node value of the linked list
+        -   Remove the last node of the linked list.
+        -   If the linked list is empty, do nothing.
+        -   If the linked list has only head node, mark it as None, making the linked list empty.
+        -   If the linked list has more nodes other than the head node, traverse to the 
+            penultimate node of the linked list and mark its next node as None.
         '''
         if self.head is None:
             return None
@@ -64,7 +100,10 @@ class LinkedList:
 
     def insert_at_start(self, value):
         '''
-        add a new node at the start of the linked list
+        -   Add a new node at the start of the linked list.
+        -   If the linked list is empty, create a new node and mark it as the head of the linked list.
+        -   If the linked list is not empty, create a new node, assign head node as its next node and,
+            mark the new node as the new head of the linked list.
         '''
         if self.head is None:
             self.head = Node(value)
@@ -73,9 +112,11 @@ class LinkedList:
             current_node.next = self.head
             self.head = current_node
 
-    def remove_from_first(self):
+    def remove_from_start(self):
         '''
-        remove node from the start of the linked list
+        -   Remove a node from the start of the linked list.
+        -   If the linked list is empty, do nothing.
+        -   If the list is not empty, mark the next node of the head node as the new head of the linked list.
         '''
         if self.head is None:
             return None
@@ -83,6 +124,10 @@ class LinkedList:
             self.head = self.head.next
         
     def __str__(self) -> str:
+        '''
+        -   Return the linked list in string format like [10 -> 20 -> 30]
+        -   If the linked list is empty, return []
+        '''
         if self.head is None:
             return "[]"
         else:
@@ -111,8 +156,8 @@ def main():
     print(f"\nmy_linked_list after 1st remove: {my_linked_list}")
     my_linked_list.insert_at_start(1020)
     print(f"\nmy_linked_list after using insert_at_first(1020): {my_linked_list}")
-    my_linked_list.remove_from_first()
-    print(f"\nmy_linked_list after using remove_from_first(): {my_linked_list}")
+    my_linked_list.remove_from_start()
+    print(f"\nmy_linked_list after using remove_from_start(): {my_linked_list}")
 
 if __name__ == "__main__":
     main()
